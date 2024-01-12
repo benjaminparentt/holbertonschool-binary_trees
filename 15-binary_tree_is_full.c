@@ -15,7 +15,7 @@ int binary_tree_is_full(const binary_tree_t *tree)
 	return (is_full(tree));
 }
 
-/*
+/**
  * is_full - check if @tree is not full
  * @tree: a binary tree
  * Return: n (@trees with one child)
