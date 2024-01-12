@@ -28,7 +28,7 @@ int _is_same_level(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	if (tree->left == NULL || tree->right == NULL)
+	if ((tree->right == NULL) && (tree->left == NULL))
 		return (0);
 
 	right_size =  _is_same_level(tree->right);
