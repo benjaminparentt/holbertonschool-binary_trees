@@ -1,7 +1,7 @@
 #include "binary_trees.h"
 
 int is_full(const binary_tree_t *tree);
-int _is_same_level(const binary_tree_t *tree);
+int _height(const binary_tree_t *tree);
 
 /**
  * binary_tree_is_perfect - check if @tree is perfect
@@ -13,26 +13,28 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	if (tree == NULL)
 		return (0);
 
-	return (is_full(tree) * _is_same_level(tree));
+	return (is_full(tree) * _height(tree));
 }
 
 /**
- * _is_same_level - check if height is same everywhere in @tree
- * @tree: a binary_tree
- * Return: 1(same levels) or 0(differents levels)
+ * _height - computer the height of @tree
+ * @tree: a binary tree
+ * Return: the height of @tree
  */
-int _is_same_level(const binary_tree_t *tree)
+int _height(const binary_tree_t *tree)
 {
 	int right_size = 0, left_size = 0;
 
 	if (tree == NULL)
 		return (0);
+	if (tree->left == NULL && tree->right == NULL && tree->parent == NULL)
+		return (1);
 
-	if ((tree->right == NULL) && (tree->left == NULL))
+	if (tree->left == NULL && tree->right == NULL)
 		return (0);
 
-	right_size =  _is_same_level(tree->right);
-	left_size =  _is_same_level(tree->left);
+	right_size =  _height(tree->right);
+	left_size =  _height(tree->left);
 
 	if (right_size != left_size)
 		return (0);
